@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        docker{
-            image 'ambiente-cypress:1.0'
-            args '-u root:root'
-        }
+    agent any
     enviroment{
         DOCKERHUB_CREDENTIALS = credentials('bb382974-7fb0-4414-ab01-8f103aeb23a5')
     }
