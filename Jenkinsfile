@@ -4,6 +4,7 @@ pipeline {
             image 'jenkins/jenkins'
             args '-u root:root'
         }
+    }
     stages {
         stage('checkout') {
             steps {
