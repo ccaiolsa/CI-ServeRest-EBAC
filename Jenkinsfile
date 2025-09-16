@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker{
-            image 'jenkins/jenkins'
+            image 'jenkins/jenkins:lts-jdk21'
             args '-u root:root'
         }
     }
