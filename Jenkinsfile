@@ -3,7 +3,6 @@ pipeline {
     enviroment{
         DOCKERHUB_CREDENTIALS = credentials('bb382974-7fb0-4414-ab01-8f103aeb23a5')
     }
-    }
     stages {
         stage('checkout') {
             steps {
