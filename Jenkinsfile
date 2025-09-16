@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker{
-            image 'jenkins/jenkins:lts-jdk21'
+            image 'ambiente-cypress'
             args '-u root:root'
         }
     }
@@ -16,9 +16,9 @@ pipeline {
                 bat 'npm ci'
             }
         }
-        stage('Run Test') {
-            steps {
-                bat 'npm ci'
+        stage('Build Imagem Docker'){
+            steps{
+                bat 'docker build -f Dockerfile -t ambiente-cypress .'
             }
         }
         stage('Run Cypress Tests'){
