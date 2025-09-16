@@ -4,6 +4,9 @@ pipeline {
             image 'ambiente-cypress:1.0'
             args '-u root:root'
         }
+    enviroment{
+        DOCKERHUB_CREDENTIALS = credentials('bb382974-7fb0-4414-ab01-8f103aeb23a5')
+    }
     }
     stages {
         stage('checkout') {
@@ -18,10 +21,12 @@ pipeline {
         }
         stage('Build Imagem Docker'){
             steps{
-                bat 'docker login'
-                bat 'docker build -f Dockerfile -t ambiente-cypress .'
+                bat '''echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
+                    docker build -t ccaiolsa/ambiente-cypress:1.0
+                    docker push ccaiolsa/ambiente-cypress:1.0'''
             }
         }
+        
         stage('Run Cypress Tests'){
             steps{
                 bat 'docker run -it ambiente-cypress'
