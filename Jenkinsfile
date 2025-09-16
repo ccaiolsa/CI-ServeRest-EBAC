@@ -1,8 +1,7 @@
 pipeline {
     agent {
         docker{
-            image 'jenkins/jenkins:lts-jdk21'
-            args '-u root:root'
+            image 'docker run -d -u root:root -p8080 jenkins/jenkins:lts-jdk21'
         }
     }
     stages {
