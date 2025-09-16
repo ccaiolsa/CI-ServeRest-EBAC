@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker{
-            image 'ambiente-cypress'
+            image 'ambiente-cypress:1.0'
             args '-u root:root'
         }
     }
@@ -18,6 +18,7 @@ pipeline {
         }
         stage('Build Imagem Docker'){
             steps{
+                bat 'docker login'
                 bat 'docker build -f Dockerfile -t ambiente-cypress .'
             }
         }
